@@ -13,8 +13,8 @@ app.get('/webhook', function (req, res) {
 });
 
 app.post('/webhook', function (req, res) {
-  var head = req.body.head.ref
-  var base = req.body.base.ref
+  var head = req.body.pull_request.head.ref
+  var base = req.body.pull_request.base.ref
   var result = execSync("git --git-dir=pruebas-hook/.git rev-list --left-right --count origin/"+base+"...origin/"+head).toString()
   
   var behind = parseInt(result.split(" ")[0]) > 0;
