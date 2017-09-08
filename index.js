@@ -8,7 +8,7 @@ execSync("git clone https://github.com/mcarreiro/pruebas-hook").toString()
 app.get('/webhook', function (req, res) {
   var result = execSync("git --git-dir=pruebas-hook/.git rev-list --left-right --count origin/master...origin/develop").toString()
   var behind = parseInt(result.split(" ")[0]) > 0;
-  res.send(result)
+  res.send("Behind" + result)
 });
 
 app.listen(process.env.PORT || 3000, function () {
